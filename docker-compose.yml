@@ -1,0 +1,21 @@
+version: "3"
+services:
+  web:
+    image: baofengyv/nginx-php-xdebug
+    ports:
+      - "80:80"
+    environment:
+      - XDEBUG_REMOTE_HOST=192.168.100.2
+    volumes:
+      # Path on the host, relative to the Compose file
+      - ./NGINX_ROOT:/var/www/html
+
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      # Path to store DATA
+      - ./MYSQL_DATA:/var/lib/mysql
